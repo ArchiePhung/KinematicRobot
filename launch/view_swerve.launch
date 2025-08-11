@@ -1,0 +1,14 @@
+<launch>
+  <!-- Load robot state -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find swerve_description)/urdf/swerve_module.urdf'" />
+
+  <!-- Publish joint states (cho phép chỉnh tay) -->
+  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/> -->
+  <!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/> -->
+
+  <!-- Broadcast TF từ joint state -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find swerve_description)/config/swerve_drive.rviz" required="true"/>
+</launch>

@@ -1,0 +1,101 @@
+<robot name="swerve_module">
+
+  <!-- Base -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.2 0.2 0.05"/>
+      </geometry>
+      <origin xyz="0 0 0.35"/>
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Steering link front-->
+  <link name="steering_link_front">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.03"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Wheel link front -->
+  <link name="wheel_link_front">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.05"/>
+      </geometry>
+      <!-- Đặt hình trụ nằm ngang (trục quay X) -->
+      <origin xyz="0 0 0" rpy="0 0 1.5708"/>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Steering link behind-->
+  <link name="steering_link_behind">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.03"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Wheel link behind -->
+  <link name="wheel_link_behind">
+    <visual>
+      <geometry>
+        <cylinder length="0.02" radius="0.05"/>
+      </geometry>
+      <!-- Đặt hình trụ nằm ngang (trục quay X) -->
+      <origin xyz="0 0 0" rpy="0 0 1.5708"/>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joint: Steering -->
+  <joint name="joint_steering_front" type="continuous">
+    <parent link="base_link"/>
+    <child link="steering_link_front"/>
+    <origin xyz="0.5 -0.5 -0.3" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Joint: Wheel -->
+  <joint name="joint_wheel_front" type="continuous">
+    <parent link="steering_link_front"/>
+    <child link="wheel_link_front"/>
+    <origin xyz="0 0 -0.1" rpy="1.5708 0 0"/>
+    <axis xyz="0 0 1"/> <!-- Trục quay là Z -->
+  </joint>
+
+  <!-- Joint: Steering -->
+  <joint name="joint_steering_behind" type="continuous">
+    <parent link="base_link"/>
+    <child link="steering_link_behind"/>
+    <origin xyz="-0.5 0.5 -0.3" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <!-- Joint: Wheel -->
+  <joint name="joint_wheel_behind" type="continuous">
+    <parent link="steering_link_behind"/>
+    <child link="wheel_link_behind"/>
+    <origin xyz="0 0 -0.1" rpy="-1.5708 0 0"/>
+    <axis xyz="0 0 1"/> <!-- Trục quay là Z -->
+  </joint>
+</robot>

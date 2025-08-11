@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="swerve_description" type="robot_pose.py" name="robot_pose_node" output="screen"> </node>
+</launch>
